@@ -25,7 +25,7 @@ class _MyHomeState extends State<MyHome> {
         value = "0";
       }
     } else if (data == "B") {
-      value = value.substring(0, data.length - 1);
+      value = value.substring(0, value.length - 1);
     } else if (data == "=") {
       equation = value;
     } else {
