@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:math_expressions/math_expressions.dart';
 
 class MyHome extends StatefulWidget {
   const MyHome({Key? key}) : super(key: key);
@@ -28,6 +29,13 @@ class _MyHomeState extends State<MyHome> {
       value = value.substring(0, value.length - 1);
     } else if (data == "=") {
       equation = value;
+      equation = equation.replaceAll("X", "*");
+      equation = equation.replaceAll("÷", "/");
+      Parser p = Parser();
+      Expression exp = p.parse(equation);
+      ContextModel cm = ContextModel();
+      result = '${exp.evaluate(EvaluationType.REAL, cm)}';
+      value = "0";
     } else {
       if (value == "0") {
         value = "";
